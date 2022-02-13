@@ -1,33 +1,59 @@
 package page;
 
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class CalcPage extends BasePage{
     public CalcPage(WebDriver driver) {
         super(driver);
     }
 
-    public void calculate_function_first_case() {
-        WebElement opening_brace = driver.findElement(By.xpath("//div[text()='(']"));
-        WebElement closing_brace = driver.findElement(By.xpath("//div[text()=')']"));
-        WebElement num_one = driver.findElement(By.xpath("//div[text()='1']"));
-        WebElement num_two = driver.findElement(By.xpath("//div[text()='2']"));
-        WebElement num_three = driver.findElement(By.xpath("//div[text()='3']"));
-        WebElement num_four = driver.findElement(By.xpath("//div[text()='4']"));
-        WebElement num_five = driver.findElement(By.xpath("//div[text()='5']"));
-        WebElement num_six = driver.findElement(By.xpath("//div[text()='6']"));
-        WebElement num_seven = driver.findElement(By.xpath("//div[text()='7']"));
-        WebElement num_eight = driver.findElement(By.xpath("//div[text()='8']"));
-        WebElement num_nine = driver.findElement(By.xpath("//div[text()='9']"));
-        WebElement num_zero = driver.findElement(By.xpath("//div[text()='0']"));
-        WebElement plus = driver.findElement(By.xpath("//div[text()='+']"));
-        WebElement multiply = driver.findElement(By.xpath("//div[text()='×']"));
-        WebElement minus = driver.findElement(By.xpath("//div[text()='−']"));
-        WebElement divide = driver.findElement(By.xpath("//div[text()='÷']"));
-        WebElement equally = driver.findElement(By.xpath("//div[text()='=']"));
+    @FindBy(xpath = "//div[text()='(']")
+    private WebElement opening_brace;
+    @FindBy(xpath = "//div[text()=')']")
+    private WebElement closing_brace;
+    @FindBy(xpath = "//div[text()='1']")
+    private WebElement num_one;
+    @FindBy(xpath = "//div[text()='2']")
+    private WebElement num_two;
+    @FindBy(xpath = "//div[text()='3']")
+    private WebElement num_three;
+    @FindBy(xpath = "//div[text()='4']")
+    private WebElement num_four;
+    @FindBy(xpath = "//div[text()='5']")
+    private WebElement num_five;
+    @FindBy(xpath = "//div[text()='6']")
+    private WebElement num_six;
+    @FindBy(xpath = "//div[text()='7']")
+    private WebElement num_seven;
+    @FindBy(xpath = "//div[text()='8']")
+    private WebElement num_eight;
+    @FindBy(xpath = "//div[text()='9']")
+    private WebElement num_nine;
+    @FindBy(xpath = "//div[text()='0']")
+    private WebElement num_zero;
+    @FindBy(xpath = "//div[text()='+']")
+    private WebElement plus;
+    @FindBy(xpath = "//div[text()='×']")
+    private WebElement multiply;
+    @FindBy(xpath = "//div[text()='−']")
+    private WebElement minus;
+    @FindBy(xpath = "//div[text()='÷']")
+    private WebElement divide;
+    @FindBy(xpath = "//div[text()='=']")
+    private WebElement answer;
+    @FindBy(xpath = "//div[text()='sin']")
+    private WebElement sin;
+
+    @FindBy(xpath = "//span[@id='cwos']")
+    private WebElement result;
+    @FindBy(xpath = "//span[@class='vUGUtc']")
+    private WebElement function;
+
+
+    public void calculateExpressionFirstCase() {
         opening_brace.click();
         num_one.click();
         plus.click();
@@ -40,45 +66,33 @@ public class CalcPage extends BasePage{
         num_zero.click();
         divide.click();
         num_five.click();
-        equally.click();
+        answer.click();
     }
 
-    public void expected_result_first_case() {
-        WebElement result = driver.findElement(By.xpath("//span[@id='cwos']"));
-        WebElement function = driver.findElement(By.xpath("//span[@class='vUGUtc']"));
+    public void checkExpectedResultFirstCase() {
         Assertions.assertEquals("(1 + 2) × 3 - 40 ÷ 5 =", function.getText());
         Assertions.assertEquals("1", result.getText());
     }
 
-    public void calculate_function_second_case() {
-        WebElement opening_brace = driver.findElement(By.xpath("//div[text()='(']"));
-        WebElement closing_brace = driver.findElement(By.xpath("//div[text()=')']"));
-        WebElement num_one = driver.findElement(By.xpath("//div[text()='1']"));
-        WebElement num_two = driver.findElement(By.xpath("//div[text()='2']"));
-        WebElement num_three = driver.findElement(By.xpath("//div[text()='3']"));
-        WebElement num_four = driver.findElement(By.xpath("//div[text()='4']"));
-        WebElement num_five = driver.findElement(By.xpath("//div[text()='5']"));
-        WebElement num_six = driver.findElement(By.xpath("//div[text()='6']"));
-        WebElement num_seven = driver.findElement(By.xpath("//div[text()='7']"));
-        WebElement num_eight = driver.findElement(By.xpath("//div[text()='8']"));
-        WebElement num_nine = driver.findElement(By.xpath("//div[text()='9']"));
-        WebElement num_zero = driver.findElement(By.xpath("//div[text()='0']"));
-        WebElement plus = driver.findElement(By.xpath("//div[text()='+']"));
-        WebElement multiply = driver.findElement(By.xpath("//div[text()='×']"));
-        WebElement minus = driver.findElement(By.xpath("//div[text()='−']"));
-        WebElement divide = driver.findElement(By.xpath("//div[text()='÷']"));
-        WebElement equally = driver.findElement(By.xpath("//div[text()='=']"));
+    public void calculateExpressionSecondCase() {
         num_six.click();
         divide.click();
         num_zero.click();
-        equally.click();
-
+        answer.click();
     }
 
-    public void expected_result_second_case() {
-        WebElement result = driver.findElement(By.xpath("//span[@id='cwos']"));
-        WebElement function = driver.findElement(By.xpath("//span[@class='vUGUtc']"));
+    public void checkExpectedResultSecondCase() {
         Assertions.assertEquals("6 ÷ 0 =", function.getText());
         Assertions.assertEquals("Infinity", result.getText());
+    }
+
+    public void calculateExpressionThirdCase() {
+        sin.click();
+        answer.click();
+    }
+
+    public void checkExpectedResultThirdCase() {
+        Assertions.assertEquals("sin() =", function.getText());
+        Assertions.assertEquals("Error", result.getText());
     }
 }

@@ -23,6 +23,7 @@ public class TestBase {
         System.setProperty("webdriver.chrome.driver","C:\\tools\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.get(SITE_URL);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         calcPage = PageFactory.initElements(driver, CalcPage.class);
