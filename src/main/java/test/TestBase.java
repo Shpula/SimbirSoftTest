@@ -13,7 +13,6 @@ import page.MainPage;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    String SITE_URL = "https://www.google.com/";
     WebDriver driver;
     public CalcPage calcPage;
     public MainPage mainPage;
@@ -24,7 +23,6 @@ public class TestBase {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get(SITE_URL);
         mainPage = PageFactory.initElements(driver, MainPage.class);
         calcPage = PageFactory.initElements(driver, CalcPage.class);
     }

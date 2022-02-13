@@ -11,13 +11,15 @@ public class MainPage extends BasePage{
         super(driver);
     }
 
+    final String SITE_URL = "https://www.google.com/";
+
     @FindBy(xpath = "//input[@name='q']")
     private WebElement search;
     @FindBy(xpath = "//input[@name='btnK']")
     private WebElement press_search;
 
     public void goToUrl() {
-        driver.get("https://www.google.com/");
+        driver.get(SITE_URL);
     }
 
     public void enteringWordInGoogleSearch() {
